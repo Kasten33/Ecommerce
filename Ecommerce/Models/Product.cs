@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Ecommerce.Models
 {
@@ -16,10 +18,16 @@ namespace Ecommerce.Models
 
         public int CategoryId { get; set; }
 
+        [NotMapped]
+        public IFormFile? ImageFile { get; set; }
+
+        public string ImageUrl { get; set; } = "https://via.placeholder.com/150";
+
+        [ValidateNever]
         public Category? Category { get; set; } //Product belongs on a category
-
+        [ValidateNever]
         public ICollection<OrderItem> OrderItems { get; set; } // product can be in many order items
-
+        [ValidateNever]
         public ICollection<ProductIngredient>? ProductIngredients { get; set; } // product can have many ingrediants
     }
 }

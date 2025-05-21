@@ -1,4 +1,6 @@
-﻿namespace Ecommerce.Models
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
+namespace Ecommerce.Models
 {
     public class Ingredient
     {
@@ -6,6 +8,7 @@
 
         public string Name { get; set; }
 
+        [ValidateNever]
         public ICollection<ProductIngredient> ProductIngredients { get; set; }
     }
 }

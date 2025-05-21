@@ -4,6 +4,7 @@ using Ecommerce.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ecommerce.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250521190021_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -247,10 +250,6 @@ namespace Ecommerce.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -272,7 +271,6 @@ namespace Ecommerce.Data.Migrations
                             ProductId = 1,
                             CategoryId = 2,
                             Description = "A Delicious Beef Taco",
-                            ImageUrl = "https://via.placeholder.com/150",
                             Name = "Beef Taco",
                             Price = 2.50m,
                             Stock = 100
@@ -282,7 +280,6 @@ namespace Ecommerce.Data.Migrations
                             ProductId = 2,
                             CategoryId = 2,
                             Description = "A Delicious Chicken Taco",
-                            ImageUrl = "https://via.placeholder.com/150",
                             Name = "Chicken Taco",
                             Price = 1.99m,
                             Stock = 101
@@ -292,7 +289,6 @@ namespace Ecommerce.Data.Migrations
                             ProductId = 3,
                             CategoryId = 2,
                             Description = "A Delicious Fish Taco",
-                            ImageUrl = "https://via.placeholder.com/150",
                             Name = "Fish Taco",
                             Price = 3.99m,
                             Stock = 90
@@ -562,7 +558,7 @@ namespace Ecommerce.Data.Migrations
 
                     b.HasOne("Ecommerce.Models.Product", "Product")
                         .WithMany("ProductIngredients")
-                        .HasForeignKey("ProductId")
+                        .HasForeignKey("IngredientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
